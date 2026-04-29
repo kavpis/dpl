@@ -4,15 +4,16 @@
  * Перенаправляет пользователя на страницу входа или в личный кабинет
  */
 
-session_start();
-
 // Подключаем конфигурацию и авторизацию
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/auth.php';
 
+// Создаем экземпляр класса авторизации
+$auth = new Auth();
+
 // Если пользователь уже авторизован, перенаправляем на соответствующую страницу
-if (Auth::isLoggedIn()) {
-    $role = Auth::getUserRole();
+if ($auth->isLoggedIn()) {
+    $role = $auth->getCurrentUser()['role'];
     
     switch ($role) {
         case ROLE_ADMIN:
@@ -29,7 +30,7 @@ if (Auth::isLoggedIn()) {
             break;
         default:
             // Если роль неизвестна, выходим из системы
-            Auth::logout();
+            $auth->logout();
             header('Location: login.php');
             break;
     }
