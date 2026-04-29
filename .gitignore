@@ -1,0 +1,59 @@
+```
+# Dependencies
+vendor/
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+dist/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.out
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+
+# PHP specific
+*.php~
+.htaccess
+
+# Coverage
+.coverage
+coverage/
+htmlcov/
+
+# Cache
+.cache/
+.mypy_cache/
+.pytest_cache/
+.gradle/
+target/
+```
