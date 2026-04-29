@@ -1,0 +1,165 @@
+{
+    "update_interval": 5,
+    "zones": {
+        "1": {
+            "name": "Цех №1 (Механический)",
+            "counters": [
+                {
+                    "type": "water",
+                    "name": "Счётчик воды вход №1",
+                    "value": 2.5,
+                    "jitter": 5,
+                    "disabled": false,
+                    "unit": "м³\/ч"
+                },
+                {
+                    "type": "heat",
+                    "name": "Счётчик тепла котёл №1",
+                    "temp_supply": 95,
+                    "temp_return": 65,
+                    "flow_rate": 15,
+                    "energy": 0.45,
+                    "jitter": 3,
+                    "disabled": false
+                },
+                {
+                    "type": "electricity",
+                    "name": "ВРУ Цех №1",
+                    "voltage": 220,
+                    "power": 45,
+                    "power_factor": 0.92,
+                    "jitter": 2,
+                    "disabled": false
+                }
+            ],
+            "anomalies": {
+                "water_leak": false,
+                "heat_overheat": false,
+                "heat_low_delta": false,
+                "power_overload": false,
+                "voltage_low": false,
+                "voltage_high": false
+            }
+        },
+        "2": {
+            "name": "Цех №2 (Сборочный)",
+            "counters": [
+                {
+                    "type": "water",
+                    "name": "Счётчик воды вход №2",
+                    "value": 1.8,
+                    "jitter": 5,
+                    "disabled": false,
+                    "unit": "м³\/ч"
+                },
+                {
+                    "type": "heat",
+                    "name": "Счётчик тепла котёл №2",
+                    "temp_supply": 92,
+                    "temp_return": 62,
+                    "flow_rate": 12,
+                    "energy": 0.38,
+                    "jitter": 3,
+                    "disabled": false
+                },
+                {
+                    "type": "electricity",
+                    "name": "ВРУ Цех №2",
+                    "voltage": 218,
+                    "power": 38,
+                    "power_factor": 0.88,
+                    "jitter": 2,
+                    "disabled": false
+                }
+            ],
+            "anomalies": {
+                "water_leak": false,
+                "heat_overheat": false,
+                "heat_low_delta": false,
+                "power_overload": false,
+                "voltage_low": false,
+                "voltage_high": false
+            }
+        },
+        "3": {
+            "name": "Цех №3 (Покрасочный)",
+            "counters": [
+                {
+                    "type": "water",
+                    "name": "Счётчик воды вход №3",
+                    "value": 3.2,
+                    "jitter": 5,
+                    "disabled": false,
+                    "unit": "м³\/ч"
+                },
+                {
+                    "type": "heat",
+                    "name": "Счётчик тепла котёл №3",
+                    "temp_supply": 98,
+                    "temp_return": 68,
+                    "flow_rate": 18,
+                    "energy": 0.52,
+                    "jitter": 3,
+                    "disabled": false
+                },
+                {
+                    "type": "electricity",
+                    "name": "ВРУ Цех №3",
+                    "voltage": 225,
+                    "power": 52,
+                    "power_factor": 0.85,
+                    "jitter": 2,
+                    "disabled": false
+                }
+            ],
+            "anomalies": {
+                "water_leak": false,
+                "heat_overheat": false,
+                "heat_low_delta": false,
+                "power_overload": false,
+                "voltage_low": false,
+                "voltage_high": false
+            }
+        },
+        "4": {
+            "name": "Административное здание",
+            "counters": [
+                {
+                    "type": "water",
+                    "name": "Счётчик воды ГВС+ХВС",
+                    "value": 0.8,
+                    "jitter": 5,
+                    "disabled": false,
+                    "unit": "м³\/ч"
+                },
+                {
+                    "type": "heat",
+                    "name": "Счётчик тепла АБ",
+                    "temp_supply": 90,
+                    "temp_return": 60,
+                    "flow_rate": 8,
+                    "energy": 0.24,
+                    "jitter": 3,
+                    "disabled": false
+                },
+                {
+                    "type": "electricity",
+                    "name": "ВРУ Администрация",
+                    "voltage": 219,
+                    "power": 25,
+                    "power_factor": 0.95,
+                    "jitter": 2,
+                    "disabled": false
+                }
+            ],
+            "anomalies": {
+                "water_leak": false,
+                "heat_overheat": false,
+                "heat_low_delta": false,
+                "power_overload": false,
+                "voltage_low": false,
+                "voltage_high": false
+            }
+        }
+    }
+}

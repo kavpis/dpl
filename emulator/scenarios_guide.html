@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Справочник сценариев аварий</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .scenario-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        .scenario-card.water { border-left-color: #3498db; }
+        .scenario-card.heat { border-left-color: #e74c3c; }
+        .scenario-card.electricity { border-left-color: #f39c12; }
+        .scenario-card.complex { border-left-color: #8e44ad; }
+        .scenario-card.normal { border-left-color: #27ae60; }
+        
+        .scenario-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        .scenario-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        .severity-badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .severity-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .severity-emergency {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .severity-critical {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .scenario-desc {
+            font-size: 15px;
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .parameters {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        .param-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .param-row:last-child {
+            border-bottom: none;
+        }
+        .param-name {
+            font-weight: 600;
+            color: #34495e;
+        }
+        .param-value {
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+            font-weight: 600;
+        }
+        
+        .algorithm-ref {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e8f4fc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📋 Справочник сценариев аварий</h1>
+    <p style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">
+        Документация для тестирования алгоритмов детекции системы мониторинга
+    </p>
+
+    <!-- ВОДА -->
+    <div class="scenario-card water">
+        <div class="scenario-header">
+            <div class="scenario-title">💧 Крупная утечка воды</div>
+            <span class="severity-badge severity-emergency">АВАРИЯ</span>
+        </div>
+        <div class="scenario-desc">
+            Симуляция прорыва трубы или серьёзной утечки в системе водоснабжения. 
+            Расход воды резко возрастает до 12.5 м³/ч, что значительно превышает нормальные значения.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Расход воды:</span>
+                <span class="param-value">12.5 м³/ч</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Джиттер:</span>
+                <span class="param-value">15%</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Норма (для сравнения):</span>
+                <span class="param-value">2.5 м³/ч</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.2 — "Детекция резкого роста расхода". 
+            Порог: > 5 м³/ч + скорость роста > 200% за 5 минут.
+        </div>
+    </div>
+
+    <div class="scenario-card water">
+        <div class="scenario-header">
+            <div class="scenario-title">🌙 Тихая утечка воды</div>
+            <span class="severity-badge severity-warning">ПРЕДУПРЕЖДЕНИЕ</span>
+        </div>
+        <div class="scenario-desc">
+            Моделирование скрытой утечки, которая не вызывает резких скачков, но приводит 
+            к постоянному расходу в нерабочее время (ночью).
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Расход воды:</span>
+                <span class="param-value">0.35 м³/ч</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Джиттер:</span>
+                <span class="param-value">2%</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Норма (ночью):</span>
+                <span class="param-value">~0 м³/ч</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.2 — "Обнаружение «тихой» утечки". 
+            Порог: > 0.1 м³/ч в течение 2 часов ночью.
+        </div>
+    </div>
+
+    <div class="scenario-card water">
+        <div class="scenario-header">
+            <div class="scenario-title">⚠️ Падение давления воды</div>
+            <span class="severity-badge severity-emergency">АВАРИЯ</span>
+        </div>
+        <div class="scenario-desc">
+            Симуляция обрыва трубы или полного прекращения подачи воды. Счётчик показывает нулевой расход.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Расход воды:</span>
+                <span class="param-value">0 м³/ч</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Статус счётчика:</span>
+                <span class="param-value">Отказ</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.2 — "Потеря связи с датчиком". 
+            Отсутствие данных > 10 минут.
+        </div>
+    </div>
+
+    <!-- ТЕПЛО -->
+    <div class="scenario-card heat">
+        <div class="scenario-header">
+            <div class="scenario-title">🔥 Перегрев теплоносителя</div>
+            <span class="severity-badge severity-critical">КРИТИЧЕСКАЯ УГРОЗА</span>
+        </div>
+        <div class="scenario-desc">
+            Критическое повышение температуры теплоносителя, создающее риск разрыва трубопровода.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Температура подачи:</span>
+                <span class="param-value">145°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Температура обратки:</span>
+                <span class="param-value">85°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Расход теплоносителя:</span>
+                <span class="param-value">25 т/ч</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Норма (подача):</span>
+                <span class="param-value">95°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Верхний порог:</span>
+                <span class="param-value">130°C</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.3 — "Контроль температуры". 
+            Порог: > 130°C → критическая угроза.
+        </div>
+    </div>
+
+    <div class="scenario-card heat">
+        <div class="scenario-header">
+            <div class="scenario-title">🌡️ Низкая дельта температур</div>
+            <span class="severity-badge severity-warning">ПРЕДУПРЕЖДЕНИЕ</span>
+        </div>
+        <div class="scenario-desc">
+            Аномально маленькая разница между температурой подачи и обратки, что может указывать 
+            на короткое замыкание в системе или неисправность насоса.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Температура подачи:</span>
+                <span class="param-value">85°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Температура обратки:</span>
+                <span class="param-value">80°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Дельта (Δ):</span>
+                <span class="param-value">5°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Нормальная дельта:</span>
+                <span class="param-value">10-20°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Нижний порог:</span>
+                <span class="param-value">5°C</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.3 — "Анализ дельты температур". 
+            Порог: < 5°C → предупреждение.
+        </div>
+    </div>
+
+    <div class="scenario-card heat">
+        <div class="scenario-header">
+            <div class="scenario-title">❄️ Замерзание системы</div>
+            <span class="severity-badge severity-emergency">АВАРИЯ</span>
+        </div>
+        <div class="scenario-desc">
+            Падение температуры теплоносителя ниже нормы, что может привести к замерзанию системы 
+            в холодное время года.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Температура подачи:</span>
+                <span class="param-value">35°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Температура обратки:</span>
+                <span class="param-value">32°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Расход теплоносителя:</span>
+                <span class="param-value">5 т/ч</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Нижний порог:</span>
+                <span class="param-value">40°C</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.3 — "Контроль температуры". 
+            Порог: < 40°C в отопительный сезон.
+        </div>
+    </div>
+
+    <!-- ЭЛЕКТРИЧЕСТВО -->
+    <div class="scenario-card electricity">
+        <div class="scenario-header">
+            <div class="scenario-title">⚡ Перегрузка по мощности</div>
+            <span class="severity-badge severity-emergency">АВАРИЯ</span>
+        </div>
+        <div class="scenario-desc">
+            Превышение установленного лимита мощности, создающее риск повреждения оборудования 
+            и возгорания.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Напряжение:</span>
+                <span class="param-value">215 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Мощность:</span>
+                <span class="param-value">125 кВт</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">cos φ:</span>
+                <span class="param-value">0.78</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Лимит мощности:</span>
+                <span class="param-value">100 кВт</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Превышение:</span>
+                <span class="param-value">+25%</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.4 — "Обнаружение перегрузки по току/мощности". 
+            Порог: > 100 кВт + 15% в течение 5 минут.
+        </div>
+    </div>
+
+    <div class="scenario-card electricity">
+        <div class="scenario-header">
+            <div class="scenario-title">🔽 Провал напряжения</div>
+            <span class="severity-badge severity-critical">КРИТИЧЕСКАЯ УГРОЗА</span>
+        </div>
+        <div class="scenario-desc">
+            Критическое падение напряжения в сети, способное вывести из строя чувствительное оборудование.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Напряжение:</span>
+                <span class="param-value">185 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Норма:</span>
+                <span class="param-value">220 В ±10%</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Нижний порог (предупр.):</span>
+                <span class="param-value">198 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Нижний порог (крит.):</span>
+                <span class="param-value">180 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Отклонение:</span>
+                <span class="param-value">-16%</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.4 — "Контроль напряжения". 
+            Порог: < 180 В → критическая угроза.
+        </div>
+    </div>
+
+    <div class="scenario-card electricity">
+        <div class="scenario-header">
+            <div class="scenario-title">🔼 Всплеск напряжения</div>
+            <span class="severity-badge severity-critical">КРИТИЧЕСКАЯ УГРОЗА</span>
+        </div>
+        <div class="scenario-desc">
+            Резкое повышение напряжения, создающее риск повреждения изоляции и выхода оборудования из строя.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Напряжение:</span>
+                <span class="param-value">255 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Норма:</span>
+                <span class="param-value">220 В ±10%</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Верхний порог (предупр.):</span>
+                <span class="param-value">242 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Верхний порог (крит.):</span>
+                <span class="param-value">260 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Отклонение:</span>
+                <span class="param-value">+16%</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.4 — "Контроль напряжения". 
+            Порог: > 260 В → критическая угроза.
+        </div>
+    </div>
+
+    <div class="scenario-card electricity">
+        <div class="scenario-header">
+            <div class="scenario-title">📉 Низкий коэффициент мощности</div>
+            <span class="severity-badge severity-warning">ПРЕДУПРЕЖДЕНИЕ</span>
+        </div>
+        <div class="scenario-desc">
+            Пониженное значение cos φ указывает на неэффективное использование электроэнергии 
+            и наличие реактивной нагрузки.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Напряжение:</span>
+                <span class="param-value">220 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Мощность:</span>
+                <span class="param-value">48 кВт</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">cos φ:</span>
+                <span class="param-value">0.65</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Нижний порог:</span>
+                <span class="param-value">0.85</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Отклонение:</span>
+                <span class="param-value">-24%</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.4 — "Анализ коэффициента мощности". 
+            Порог: < 0.85 → рекомендация компенсации.
+        </div>
+    </div>
+
+    <!-- КОМПЛЕКСНЫЕ -->
+    <div class="scenario-card complex">
+        <div class="scenario-header">
+            <div class="scenario-title">💥 Комплексный кризис</div>
+            <span class="severity-badge severity-critical">КРИТИЧЕСКАЯ УГРОЗА</span>
+        </div>
+        <div class="scenario-desc">
+            Одновременное возникновение аварий по всем трём ресурсам. Тестирование системы 
+            приоритизации событий и комплексного реагирования.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Вода — расход:</span>
+                <span class="param-value">15.0 м³/ч</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Тепло — подача:</span>
+                <span class="param-value">140°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Электричество — напряжение:</span>
+                <span class="param-value">180 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Электричество — мощность:</span>
+                <span class="param-value">130 кВт</span>
+            </div>
+        </div>
+        <div class="algorithm-ref">
+            <strong>Алгоритм детекции:</strong> Раздел 5.5 — "Интеграция и приоритизация событий". 
+            Все активные алерты обрабатываются по уровню критичности.
+        </div>
+    </div>
+
+    <!-- НОРМАЛЬНЫЙ РЕЖИМ -->
+    <div class="scenario-card normal">
+        <div class="scenario-header">
+            <div class="scenario-title">✅ Нормальный режим</div>
+            <span class="severity-badge" style="background: #d4edda; color: #155724;">НОРМА</span>
+        </div>
+        <div class="scenario-desc">
+            Возврат всех параметров к штатным значениям. Используется для сброса тестовых сценариев.
+        </div>
+        <div class="parameters">
+            <div class="param-row">
+                <span class="param-name">Вода — расход:</span>
+                <span class="param-value">2.5 м³/ч</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Тепло — подача/обратка:</span>
+                <span class="param-value">95°C / 65°C</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Электричество — напряжение:</span>
+                <span class="param-value">220 В</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Электричество — мощность:</span>
+                <span class="param-value">45 кВт</span>
+            </div>
+            <div class="param-row">
+                <span class="param-name">Электричество — cos φ:</span>
+                <span class="param-value">0.92</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
