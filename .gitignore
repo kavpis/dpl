@@ -1,1 +1,5 @@
-Nothing needs to be added to .gitignore since only a single PHP source file (dpl/index.php) was added without any build artifacts, dependencies, or temporary files.
+```
+# Logs and temp files
+*.log
+dpl/logs/
+```

@@ -43,7 +43,7 @@ define('API_PATH', BASE_PATH . '/api');
 
 // Ошибки (в продакшене отключить)
 error_reporting(E_ALL);
-ini_set('display_errors', 0);
+ini_set('display_errors', 1); // Включено для отладки
 ini_set('log_errors', 1);
 ini_set('error_log', BASE_PATH . '/logs/error.log');
 
